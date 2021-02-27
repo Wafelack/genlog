@@ -5,10 +5,11 @@ set -euo pipefail
 # By Wafelack <wafelack@protonmail.com>.
 # License under the GNU General Public License v3.0.
 
-if [[ $# != 2 ]]
+if [[ $# != 1 ]]
 then
   >&2 echo "Usage: genlog.sh <commit>."
   exit -1
 fi
 
-HASHES=$(git log --pretty=format:"%h" )
+HASHES=$(git log --pretty=format:"%h" ${1}..HEAD)
+echo $HASHES
