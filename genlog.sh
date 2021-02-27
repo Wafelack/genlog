@@ -11,5 +11,12 @@ then
   exit -1
 fi
 
-HASHES=$(git log --pretty=format:"%h" ${1}..HEAD)
-echo $HASHES
+COMMITS=$(git log --pretty=format:"%h" ${1}..HEAD)
+echo $COMMITS
+
+for commit in $COMMITS
+do
+  message=$(echo $(git log --format=%B -n 1 $commit) | head -1)
+  
+  echo "${commit} - ${message}"  
+done
