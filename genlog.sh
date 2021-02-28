@@ -1,17 +1,34 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Changelog Generator for the skiftOS commit rule, v0.1.0
-# By Wafelack <wafelack@protonmail.com>.
-# License under the GNU General Public License v3.0.
 
-if [[ $# != 2 ]]
+TAG=0
+
+if [[ $# == 1 ]]
 then
-  >&2 echo "Usage: genlog.sh <commit> <version>."
-  exit 255
+  TAG=1
 fi
 
-COMMITS=$(git log --pretty=format:"%h" "${1}"..HEAD)
+
+if [[ $TAG == 1 ]]
+then
+  if [[ "$1" == "help" ]]
+  then
+    echo "Genlog is a changelog generator for the skiftOS commit rule."
+    echo "Version 0.1.1"
+    echo "By Wafelack <wafelack@protonmail.com>."
+    echo "License under the GNU General Public License v3.0."
+    echo "Usage: genlog.sh [tag]"
+    exit
+  fi
+fi
+
+if [[ $TAG == 1 ]]
+then
+  COMMITS=$(git log --pretty=format:"%h" "${1}"..HEAD)
+else
+  COMMITS=$(git log --pretty=format:"%h")
+fi
 
 declare -A sections
 
@@ -33,7 +50,7 @@ do
     commit_type="kernel"
   elif [[ $commit_type == "ci" ]]
   then
-     commit_type="CI"
+    commit_type="CI"
   fi
 
   if [ ${sections[$commit_type]+true} ]
@@ -44,7 +61,12 @@ do
   fi
 done
 
-echo "# $2 - $(date +"%d/%m/%Y")"
+if [[ $TAG == 1 ]]
+then
+  echo "# $1 - $(date +"%d/%m/%Y")"
+else
+  echo "# CHANGELOG"
+fi
 echo
 
 for section in "${!sections[@]}"
@@ -58,16 +80,16 @@ do
 
   for (( i=0; i<${#content}; i++ ))
   do
-     char="${content:$i:1}"
-     following=$i+1
-     following_char="${content:$following:1}"
+    char="${content:$i:1}"
+    following=$i+1
+    following_char="${content:$following:1}"
 
-     if [ "$char" = $'\\' ] && [ "$following_char" = $'n' ]
-     then
-       echo
-       i=$i+1
-       prev_newline=1
-     else
+    if [ "$char" = $'\\' ] && [ "$following_char" = $'n' ]
+    then
+      echo
+      i=$i+1
+      prev_newline=1
+    else
       if [[ $prev_newline == 1 ]]
       then
         prev_newline=0
@@ -76,7 +98,7 @@ do
 
       printf "%s" "${char}"
 
-     fi
+    fi
   done
   echo
 done
