@@ -19,8 +19,8 @@ for commit in $COMMITS
 do
   message=$(echo $(git log --format=%B -n 1 $commit) | head -1)
 
-  commit_type=$(echo $message | cut -f1 -d ':')
-  commit_content=$(echo $message | cut -f2 -d ':')
+  commit_type=$(echo "$message" | cut -f1 -d ':')
+  commit_content=$(echo "$message" | cut -f2 -d ':')
 
   if [[ -z $commit_type ]] || [[ -z $commit_content ]]
   then
