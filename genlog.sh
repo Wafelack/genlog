@@ -24,7 +24,7 @@ do
 
   if [[ -z $commit_type ]] || [[ -z $commit_content ]]
   then
-    echo "\tIgnoring invalid commit: \`$message\`"
+    >&2 echo "\tIgnoring invalid commit: \`$message\`"
     continue
   fi
 
