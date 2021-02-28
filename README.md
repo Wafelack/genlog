@@ -1,7 +1,7 @@
 genlog
 ======
 
-A fully POSIX changelog generator written in bash.
+A fully POSIX changelog generator written in bash for repository following the commit rule `<scope>: <description>`.
 
 Installation
 ------------
