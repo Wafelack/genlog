@@ -8,23 +8,23 @@ set -euo pipefail
 if [[ $# != 2 ]]
 then
   >&2 echo "Usage: genlog.sh <commit> <version>."
-  exit -1
+  exit 255
 fi
 
-COMMITS=$(git log --pretty=format:"%h" ${1}..HEAD)
+COMMITS=$(git log --pretty=format:"%h" "${1}"..HEAD)
 
 declare -A sections
 
 for commit in $COMMITS
 do
-  message=$(echo $(git log --format=%B -n 1 $commit) | head -1)
+  message=$(echo $(git log --format=%B -n 1 "$commit") | head -1)
 
   commit_type=$(echo "$message" | cut -f1 -d ':')
   commit_content=$(echo "$message" | cut -f2 -d ':')
 
   if [[ -z $commit_type ]] || [[ -z $commit_content ]]
   then
-    >&2 echo "\tIgnoring invalid commit: \`$message\`"
+    >&2 printf "\tIgnoring invalid commit: \`$message\`\n"
     continue
   fi
 
