@@ -35,4 +35,4 @@ This program is licensed under the GNU General Public License version 3.0
 Acknowledgments
 ---------------
 
-* Author: Wafelack <wafelack@protonmail.com>
+* Author: Wafelack \<wafelack@protonmail.com>
