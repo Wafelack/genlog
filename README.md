@@ -23,7 +23,7 @@ Usage: `genlog.sh <commit | version_tag>`
 
 ### Creating a full changelog
 
-Usage `genlog.sh`
+Usage: `genlog.sh`
 
 > TIP: Redirect `stdout` to a file to save your changelog.
 
