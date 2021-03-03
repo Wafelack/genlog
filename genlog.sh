@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 # 
 # Genlog, changelog generator for skitOS commit rule
 # Version 0.1.1
