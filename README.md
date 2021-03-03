@@ -1,14 +1,14 @@
 genlog
 ======
 
-A fully POSIX changelog generator written in bash for repository following the commit rule `<scope>: <description>`.
+A fully POSIX changelog generator written in shell for repositories following the commit rule `<scope>: <description>`.
 
 Installation
 ------------
 
 * Run the following in your favorite shell.
 
-```bash
+```sh
 $ wget https://raw.githubusercontent.com/Wafelack/genlog/master/genlog.sh \
   chmod 711 genlog.sh \
   sudo cp genlog.sh /usr/bin/
