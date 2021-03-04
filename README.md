@@ -27,6 +27,11 @@ Usage: `genlog.sh`
 
 > TIP: Redirect `stdout` to a file to save your changelog.
 
+To do
+-----
+
+* Write multi os tests
+
 License
 -------
 
