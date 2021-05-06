@@ -1,36 +1,26 @@
 genlog
 ======
 
-A fully POSIX changelog generator written in shell for repositories following the commit rule `<scope>: <description>`.
+A simple changelog generator written in Perl.
 
 Installation
 ------------
 
-* Run the following in your favorite shell.
+* Run the following as root in your favorite shell.
 
-```sh
-$ wget https://raw.githubusercontent.com/Wafelack/genlog/master/genlog.sh \
-  chmod 711 genlog.sh \
-  sudo cp genlog.sh /usr/bin/
+```
+wget https://raw.githubusercontent.com/Wafelack/genlog/master/genlog.pl \
+  chmod 711 genlog.pl \
+  cp genlog.pl /usr/bin/
 ```
 
 Usage
 -----
 
-### Creating a changelog for a single version
+`genlog.pl [--hash HASH] [--title TITLE]`
 
-Usage: `genlog.sh <commit | version_tag>`
-
-### Creating a full changelog
-
-Usage: `genlog.sh`
-
-> TIP: Redirect `stdout` to a file to save your changelog.
-
-To do
------
-
-* Write multi os tests
+If no `HASH` is specified, the changelog will be generated since the first commit.
+If no `TITLE` is specified, the changelog title will be `Changelog from {HASH} to HEAD.`.
 
 License
 -------
